@@ -1,0 +1,24 @@
+version: "3"
+services:
+  dbtube:
+    image: "mongo:latest"
+    container_name: dbtube
+    ports:
+      - "27030:27017"
+    restart: always
+    # volumes:
+    #   - ./data/db:/data/db
+
+  apitube:
+    container_name: apitube
+    build: .
+    image: apitube
+    volumes:
+      - ./:/node-app
+      - ./node_modules:/node-app/node_modules
+    depends_on:
+      - dbtube
+    links:
+      - dbtube
+    ports:
+      - "90:80"
