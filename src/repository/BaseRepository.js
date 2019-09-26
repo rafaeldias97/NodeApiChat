@@ -11,9 +11,9 @@ module.exports = class BaseRepository {
         }
     }
     
-    async Get() {
+    async Get(obj = {}) {
         try {
-            return await this.Model.find();
+            return await this.Model.find(obj);
         } catch (e) {
             throw new Error(e);
         }
@@ -27,9 +27,9 @@ module.exports = class BaseRepository {
         }
     }
 
-    async Delete() {
+    async Delete(id) {
         try {
-            return await this.Model.findOneAndDelete({ _id: req.params.id });
+            return await this.Model.findOneAndDelete({ _id: id });
         } catch(e) {
             throw new Error(e);
         }

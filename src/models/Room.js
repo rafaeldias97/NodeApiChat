@@ -19,12 +19,12 @@ const Room = new Schema({
         default: null
     },
     like: {
-        type: Number,
-        required: true
+        type: Array,
+        default: []
     },
     deslike: {
-        type: Number,
-        required: true
+        type: Array,
+        default: []
     },
     createdAt: {
         type: Date,
