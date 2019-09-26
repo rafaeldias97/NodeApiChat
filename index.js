@@ -9,6 +9,7 @@ const swaggerConf = require('./src/swagger/swagger.conf.js');
 
 const person = require('./src/routes/Person');
 const room = require('./src/routes/Room');
+const like = require('./src/routes/Like');
 
 // Configurations
 app.use(bodyParser.json());
@@ -22,6 +23,7 @@ app.listen(port, () => {
         // Routes
         app.use('/api/v1/person', person);
         app.use('/api/v1/room', room);
+        app.use('/api/v1/like', like);
     })
     console.log(`Aplicação rodando na porta ${port}`)
 });
