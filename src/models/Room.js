@@ -14,6 +14,10 @@ const Room = new Schema({
         type: String,
         required: true
     },
+    imageURL: {
+        type: String,
+        default: null
+    },
     linkVideo: {
         type: String,
         default: null

@@ -35,6 +35,14 @@ let Delete = [
         // .withMessage('Voce não tem privilegios para esta sala')
 ]
 
+let Upload = [
+    check('_id')
+        .not().isEmpty()
+        .withMessage('Id é obrigatório')
+        .custom(async (el, obj) => await verifyUser(el, obj))
+        .withMessage('Voce não tem privilegios para esta sala'),
+]
+
 const verifyUser = async (_id, obj) => {
     let res = await RoomRepository.GetBy({ _id: _id });
     let id = jwt.decode(obj.req.headers.authorization.replace("Bearer ", ""))._id
@@ -44,5 +52,6 @@ const verifyUser = async (_id, obj) => {
 module.exports = {
     Create,
     Edit,
-    Delete
+    Delete,
+    Upload
 }
