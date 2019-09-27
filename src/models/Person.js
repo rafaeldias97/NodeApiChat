@@ -6,6 +6,10 @@ const Person = new Schema({
         type: String,
         required: true
     },
+    profileURL: {
+        type: String,
+        default: null
+    },
     email: {
         type: String,
         required: true
