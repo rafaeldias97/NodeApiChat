@@ -16,6 +16,7 @@ const imageUpload = require('./src/routes/ImageUpload');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true }));
 app.use(cors());
+app.use(express.static('./tmp'));
 
 expressSwagger(swaggerConf);
 app.listen(port, () => {

@@ -24,7 +24,7 @@ const RoomValidator = require('../validations/RoomValidator');
 router.post('/perfil/upload', multer(multerConfig).single('file'), authorize, async (req, res) => {
     let id = jwt.decode(req.headers.authorization.replace("Bearer ", ""))._id
 
-    let result = await PersonRepository.Put(id, { profileURL: req.file.filename });
+    let result = await PersonRepository.Put(id, { profileURL: `uploads/${req.file.filename}` });
     if (result === null) fs.unlinkSync(req.file.path);
 
     return res.json(req.file);
@@ -45,7 +45,7 @@ router.post('/room/upload', multer(multerConfig).single('file'), authorize, Room
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
 
-    let result = await RoomRepository.Put(req.query.roomId, { imageURL: req.file.filename });
+    let result = await RoomRepository.Put(req.query.roomId, { imageURL: `uploads/${req.file.filename}` });
     if (result === null) fs.unlinkSync(req.file.path);
 
     return res.json(req.file);
