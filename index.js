@@ -11,6 +11,7 @@ const person = require('./src/routes/Person');
 const room = require('./src/routes/Room');
 const like = require('./src/routes/Like');
 const imageUpload = require('./src/routes/ImageUpload');
+const youtube = require('./src/routes/Youtube');
 
 // Configurations
 app.use(bodyParser.json());
@@ -28,6 +29,7 @@ app.listen(port, () => {
         app.use('/api/v1/room', room);
         app.use('/api/v1/like', like);
         app.use('/api/v1/image', imageUpload);
+        app.use('/api/v1/youtube', youtube);
     })
     console.log(`Aplicação rodando na porta ${port}`)
 });
