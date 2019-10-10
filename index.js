@@ -6,6 +6,7 @@ const expressSwagger = require('express-swagger-generator')(app);
 const port = process.env.PORT || 80;
 const mongoose = require('mongoose');
 const swaggerConf = require('./src/config/swagger.conf.js');
+const socket = require('./src/ws/room');
 
 const person = require('./src/routes/Person');
 const room = require('./src/routes/Room');
@@ -20,7 +21,7 @@ app.use(cors());
 app.use(express.static('./tmp'));
 
 expressSwagger(swaggerConf);
-app.listen(port, () => {
+const server = app.listen(port, () => {
     mongoose.connect('mongodb://dbtube/tube', {
         useNewUrlParser: true
     }).then(result => {
@@ -33,3 +34,5 @@ app.listen(port, () => {
     })
     console.log(`Aplicação rodando na porta ${port}`)
 });
+
+socket(server);
